@@ -24,12 +24,15 @@
                 loading: false,
             };
         },
-        methods: mapActions([ 'fetchProducts', 'addProductToCart' ]),
+        methods: mapActions({
+            fetchProducts: 'products/fetchProducts',
+            addProductToCart: 'cart/addProductToCart',
+        }),
         computed: {
-            ...mapState({ 
-                products: state => state.products.items, 
+            ...mapState('products', { 
+                products: state => state.items, 
             }),
-            ...mapGetters([ 'productIsInStock' ]),
+            ...mapGetters({ productIsInStock: 'products/productIsInStock' }),
         },
         created() {
             this.loading = true;
