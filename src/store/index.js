@@ -20,6 +20,7 @@ export default new Vuex.Store({
                 const product = state.products.find(product => product.id === cartItem.id);
 
                 return {
+                    id: product.id,
                     title: product.title,
                     price: product.price,
                     quantity: cartItem.quantity,

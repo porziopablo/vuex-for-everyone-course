@@ -16,28 +16,22 @@
 </template>
 
 <script>
+    import { mapState, mapGetters, mapActions } from 'vuex';
+
     export default {
         data() {
             return {
                 loading: false,
             };
         },
-        methods: {
-            addProductToCart(product) {
-                this.$store.dispatch('addProductToCart', product);
-            },
-        },
+        methods: mapActions([ 'fetchProducts', 'addProductToCart' ]),
         computed: {
-            products() {
-                return this.$store.state.products;
-            },
-            productIsInStock() {
-                return this.$store.getters.productIsInStock;
-            }
+            ...mapState([ 'products' ]),
+            ...mapGetters([ 'productIsInStock' ]),
         },
         created() {
             this.loading = true;
-            this.$store.dispatch('fetchProducts').then(() => { this.loading = false });
+            this.fetchProducts().then(() => { this.loading = false });
         },
     };
 </script>
