@@ -1,21 +1,23 @@
-# vuex-for-everyone-course
+# Vue School - Vuex for Everyone Course
 
-> A Vue.js project
+Project developed as part of [Vue School's Vuex for Everyone Course](https://vueschool.io/courses/vuex-for-everyone). The goal was to learn and practice how to manage an app's state using [Vuex](https://vuex.vuejs.org/). The topic was a shopping cart for an online store.
 
-## Build Setup
+## Installation
 
-``` bash
-# install dependencies
-npm install
+1 - Clone repo:
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+```
+git clone https://github.com/porziopablo/vuex-for-everyone-course.git
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+2 - Install dependencies:
+
+```
+npm install
+```
+
+3 - Run on port `8080`:
+
+```
+npm run dev
+```
