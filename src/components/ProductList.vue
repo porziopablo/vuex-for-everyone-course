@@ -26,7 +26,9 @@
         },
         methods: mapActions([ 'fetchProducts', 'addProductToCart' ]),
         computed: {
-            ...mapState([ 'products' ]),
+            ...mapState({ 
+                products: state => state.products.items, 
+            }),
             ...mapGetters([ 'productIsInStock' ]),
         },
         created() {

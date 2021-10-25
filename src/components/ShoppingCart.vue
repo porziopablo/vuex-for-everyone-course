@@ -21,7 +21,9 @@
                 products: 'cartProducts',
                 total: 'cartTotal',
             }),
-            ...mapState([ 'checkoutStatus' ]),
+            ...mapState({
+                checkoutStatus: state => state.cart.checkoutStatus,
+            }),
             isCheckoutDisabled() {
                 return this.total === 0;
             }
