@@ -28,6 +28,11 @@ export default new Vuex.Store({
         },
         cartTotal(state, getters) {
             return getters.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+        },
+        productIsInStock() {
+            return function(product) {
+                return product.inventory > 0;
+            }
         }
     },
     actions: {
@@ -39,8 +44,12 @@ export default new Vuex.Store({
                 });
             });
         },
-        addProductToCart({ commit, state }, product) {
-            if (product.inventory > 0) {
+        addProductToCart({ commit, state, getters }, product) {
+            // if the user adds a new product to the cart after a successful checkout, the checkout status
+            // should go back to its initial state
+            commit('setCheckoutStatus', '');
+
+            if (getters.productIsInStock(product)) {
                 const cartItem = state.cart.find(item => item.id === product.id);
 
                 if (!cartItem) {

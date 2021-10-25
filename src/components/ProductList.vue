@@ -4,7 +4,12 @@
         <img v-if="loading" src="https://i.imgur.com/JfPpwOA.gif" alt="loading">
         <ul v-else>
             <li v-for="product in products" :key="product.id">{{ product.title }} - {{ product.price | currency }} - {{ product.inventory }}
-                <button @click="addProductToCart(product)">Add to cart</button>
+                <button
+                    :disabled="!productIsInStock(product)"
+                    @click="addProductToCart(product)"
+                >
+                    Add to cart
+                </button>
             </li>
         </ul>
     </div>
@@ -24,8 +29,11 @@
         },
         computed: {
             products() {
-                return this.$store.getters.availableProducts;
+                return this.$store.state.products;
             },
+            productIsInStock() {
+                return this.$store.getters.productIsInStock;
+            }
         },
         created() {
             this.loading = true;
