@@ -7,18 +7,23 @@
             </li>
         </ul>
         <p>Total: {{ total | currency }}</p>
+        <button :disabled="isCheckoutDisabled" @click="$store.dispatch('checkout')">Checkout</button>
+        <p v-if="$store.state.checkoutStatus">{{ $store.state.checkoutStatus }}</p>
     </div>
 </template>
 
 <script>
     export default {
-      computed: {
-          products() {
-              return this.$store.getters.cartProducts;
-          },
-          total() {
-              return this.$store.getters.cartTotal;
-          }
-      }  
+        computed: {
+            products() {
+                return this.$store.getters.cartProducts;
+            },
+            total() {
+                return this.$store.getters.cartTotal;
+            },
+            isCheckoutDisabled() {
+                return this.total === 0;
+            }
+        }  
     };
 </script>
